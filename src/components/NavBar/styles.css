@@ -1,0 +1,27 @@
+.nav-bar-container{
+  position: fixed;
+  background: #ffffff;
+  top: 40px;
+  left: 0; 
+}
+/* hard coding for now */
+.nav-horizantal{
+  height: 40px;
+  width: 100%;
+}
+
+.nav-vertical{
+  width: 40px;
+  height: calc(100% - 40px);
+}
+
+.item-menu-v{
+  height: 40px;
+}
+.item-menu-h{
+  width: 40px;
+}
+
+.selected{
+  background: #FAFAFA;
+}
