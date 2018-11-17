@@ -17,11 +17,15 @@
 
 .item-menu-v{
   height: 40px;
+  text-align: center;
+  line-height: 40px;
 }
 .item-menu-h{
   width: 40px;
+  text-align: center;
+  line-height: 40px;
 }
 
-.selected{
+.active{
   background: #FAFAFA;
 }

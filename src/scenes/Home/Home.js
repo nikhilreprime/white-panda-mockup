@@ -19,81 +19,109 @@ class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      
+
     }
-    
+
     this.homeData = {
-      simpleCards : [
+      simpleCards: [
         {
           id: 1,
-          iconUrl:"",
-          title:"Blog Post",
-          description:"400 - 500 words",
+          iconUrl: "",
+          title: "Blog Post",
+          description: "400 - 500 words",
           cardType: 1
         },
         {
           id: 2,
-          iconUrl:"",
-          title:"White Paper",
-          description:"2500 - 3000 words",
+          iconUrl: "",
+          title: "White Paper",
+          description: "2500 - 3000 words",
           cardType: 1
         },
         {
           id: 3,
-          iconUrl:"",
-          title:"Website content",
-          description:"250 - 300 words",
+          iconUrl: "",
+          title: "Website content",
+          description: "250 - 300 words",
           cardType: 1
         },
         {
           id: 4,
-          iconUrl:"",
-          title:"Press Release",
-          description:"350 - 450 words",
+          iconUrl: "",
+          title: "Press Release",
+          description: "350 - 450 words",
           cardType: 1
         },
         {
           id: 5,
-          iconUrl:"",
-          title:"Blog Post 1",
-          description:"400 - 500 words",
+          iconUrl: "",
+          title: "Product Description",
+          description: "400 - 500 words",
           cardType: 1
         },
         {
           id: 6,
-          iconUrl:"",
-          title:"White Paper 1",
-          description:"2500 - 3000 words",
+          iconUrl: "",
+          title: "Social Media",
+          description: "2500 - 3000 words",
           cardType: 1
         },
         {
           id: 7,
-          iconUrl:"",
-          title:"Website content 1",
-          description:"250 - 300 words",
+          iconUrl: "",
+          title: "Story Writing",
+          description: "250 - 300 words",
           cardType: 1
         },
         {
           id: 8,
-          iconUrl:"",
-          title:"Press Release",
-          description:"350 - 450 words",
+          iconUrl: "",
+          title: "Video Script",
+          description: "350 - 450 words",
+          cardType: 1
+        },
+        {
+          id: 9,
+          iconUrl: "",
+          title: "Newsletter",
+          description: "250 - 300 words",
+          cardType: 1
+        },
+        {
+          id: 10,
+          iconUrl: "",
+          title: "Brochure Content",
+          description: "350 - 450 words",
+          cardType: 1
+        },
+        {
+          id: 11,
+          iconUrl: "",
+          title: "Custom Content",
+          description: "250 - 300 words",
+          cardType: 1
+        },
+        {
+          id: 12,
+          iconUrl: "",
+          title: "Contest",
+          description: "350 - 450 words",
           cardType: 1
         }
       ],
-      specialCards : [
+      specialCards: [
         {
           id: 5,
-          iconUrl:"",
-          title:"Order from Template",
-          description:"You can get orders from templates",
+          iconUrl: "",
+          title: "Order from Template",
+          description: "You can get orders from templates",
           cardType: 2
         },
         {
           id: 6,
-          iconUrl:"",
-          title:"Order Via Template",
-          description:"Its usefull when giving bulk orders",
+          iconUrl: "",
+          title: "Order Via Template",
+          description: "Its usefull when giving bulk orders",
           cardType: 2
         }
       ]
@@ -105,7 +133,7 @@ class Home extends Component {
   }
 
   componentDidMount() {
-    
+
   }
 
   // Server calls
@@ -115,48 +143,49 @@ class Home extends Component {
   // listeners
 
   // views to be rendered
+  getCardView = (arrayList, rowSize) => {
+    let CardsView = []
+    let count = 1;
+    let temp = {}
+    let row = 0;
+    for (let item of arrayList) {
+      if (count % rowSize === 0) {
+        temp[row].push(<CardContent {...item} />)
+        row++;
+      } else {
+        if (temp[row]) {
+          temp[row].push(<CardContent {...item} />)
+        } else {
+          temp[row] = [];
+          temp[row].push(<CardContent {...item} />)
+        }
+      }
+      count++;
+    }
+    for (var key in temp) {
+      if (temp.hasOwnProperty(key)) {
+        CardsView.push(
+          <div style={{ display: "flex" }}>
+            {temp[key]}
+          </div>
+        )
 
+      }
+    }
+    return CardsView
+  }
 
 
   //finally render
   render() {
-    let simpleCardsView = []
-    // this.homeData.simpleCards.map((item, index)=>{
-    //   return <CardContent {...item}/> 
-    // })
-    let count = 1;
-    let temp = []
-    for(let item of this.homeData.simpleCards){
-      if(count % 4 === 0){
-        temp = []
-        temp.push(<CardContent {...item}/> )
-        simpleCardsView.push(
-          <div style={ {display:"flex"}}>
-            {temp}
-          </div>
-        )
-      }else{
-        temp.push(<CardContent {...item}/> )
-      }
-      count++;
-    }
-    if(temp.length !== 0){
-      simpleCardsView.push(
-        <div style={ {display:"flex"}}>
-          {temp}
-        </div>
-      )
-    }
-    let spacialCardsView = this.homeData.specialCards.map((item, index)=>{
-      return <CardContent {...item}/> 
-    })
+
     return (
       <div className="home-page-container">
-        <Header/>
-        <NavBar orientation="vertical"/>
+        <Header />
+        <NavBar orientation="vertical" />
         <div className="content-container">
-          {simpleCardsView}
-          {spacialCardsView}
+          {this.getCardView(this.homeData.simpleCards, 4)}
+          {this.getCardView(this.homeData.specialCards, 2)}
         </div>
       </div>
     );

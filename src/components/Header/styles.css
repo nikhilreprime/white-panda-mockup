@@ -1,8 +1,31 @@
 .header-container{
+  display: flex;
   position: fixed;
   top: 0;
   left: 0;
   height: 40px;
   width: 100%;
   background: #000;
+}
+.section-1{
+  flex: 1;
+  text-align: center;
+}
+.section-2{
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.item{
+  
+  width: 25px;
+  height: 25px;
+  border-radius: 25px;
+  border-width: 3px;
+  border-style: solid;
+  border-color: #777;
+  background: white;
+  margin: 0 15px;
 }

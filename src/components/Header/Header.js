@@ -37,7 +37,20 @@ class Header extends Component {
     let { title } = this.props;
     return (
       <div className="header-container">
-          This is header
+          <div className="section-1">
+            <img src="/logo.jpg"/>
+          </div>
+          <div className="section-2"> 
+            <div className="item">
+            </div>
+            <div className="item">
+            </div>
+            <div className="item">
+            </div>
+            <div className="item">
+            </div>
+          </div>
+          
       </div>
     );
   }

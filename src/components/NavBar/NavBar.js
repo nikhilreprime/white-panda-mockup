@@ -14,6 +14,24 @@ import './styles.css'
 class NavBar extends Component {
   constructor(props) {
     super(props);
+
+    this.menuItems = [
+      {
+        id: 1,
+        title: "H",
+        isActive: true
+      },
+      {
+        id: 2,
+        title: "C",
+        isActive: false
+      },
+      {
+        id: 1,
+        title: "P",
+        isActive: false
+      }
+    ]
   }
 
   componentWillMount() {
@@ -42,9 +60,26 @@ class NavBar extends Component {
     }else{
       classes += " nav-vertical"
     };
+
+    let menuView = this.menuItems.map((item, index)=>{
+      let classes = "";
+      if(item.isActive){
+        classes = "active"
+      }
+      if(orientation === "horizantal"){
+        classes += "item-menu-h"
+      }else{
+        classes += " item-menu-v"
+      };
+      return(
+        <div className={classes}>
+            {item.title}
+        </div>
+      )
+    })
     return (
       <div className={classes}>
-        
+          {menuView}
       </div>
     );
   }
